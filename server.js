@@ -23,10 +23,6 @@ app.get("/api/notes", (req, res) => {
 });
 
 
-app.get("*", (req, res) => { //gets the homepage (index.html)
-    res.sendFile(path.join(__dirname, "/public/index.html"));
-});
-
 //recieves a new note from the request body, adds it to db.json, then updates the database so that the note becomes accessable
 app.post("/api/notes", (req, res) => {
     var newNote = req.body; //a new note is made from the text in the request body and assigned to a variable
@@ -56,6 +52,12 @@ app.delete("/api/notes/:id", (req, res) => { //we target a specific note based o
     fs.writeFileSync("./db/db.json", JSON.stringify(noteList));
     res.json(noteList);
 });
+
+
+app.get("*", (req, res) => { //gets the homepage (index.html)
+    res.sendFile(path.join(__dirname, "/public/index.html"));
+});
+
 
 //displays what port you are on in the console log
 app.listen(PORT, () => console.log("Server listening on port " + PORT));
