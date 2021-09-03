@@ -4,7 +4,7 @@ const fs = require("fs"); //next we bring in fs. This just helps us interact wit
 
 const app = express(); //we make a variable and give it the function express(). This is how we run express in our code
 
-const PORT = 8080; //we make a variable called port and give it the value 8080. 8080 is a popular internet port used for proxies and caching
+const PORT = process.env.PORT || 8080; //we make a variable called port and give it the value 8080. 8080 is a popular internet port used for proxies and caching
 
 app.use(express.static('public')); //express.static will serve static files to the directory known as 'public'
 app.use(express.urlencoded({extended: true})); //this is a method that uses express to recognise incoming requests as strings or arrays
